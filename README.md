@@ -1,6 +1,6 @@
 ## LIBODM
 
-[Manual](https://github.com/murongxixi/libodm/wiki/Manual)　　[使用说明](https://github.com/murongxixi/libodm/wiki/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
+[Manual](https://github.com/Avanti1980/libodm/wiki/Manual)　　[使用说明](https://github.com/Avanti1980/libodm/wiki/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
 
 LIBODM is a cross-platform package for the **o**ptimal margin **d**istribution **m**achine (ODM), which aims to achieve better binary classification performance by explicitly optimizing the margin distribution [1]. It currently contains one dual solver supporting four different kernels and two primal solvers exploiting linear kernel:
 
