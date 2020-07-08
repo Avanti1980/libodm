@@ -1,0 +1,28 @@
+CXX ?= g++
+CFLAGS = -Wall -Wconversion -O3 -fPIC
+LIBS = blas.a
+TARGET = windows
+
+all: train predict lib
+
+train: tron.o odm.o train.c blas\$(LIBS)
+	$(CXX) $(CFLAGS) -o $(TARGET)\libodm-train.exe train.c tron.o odm.o blas\$(LIBS)
+
+predict: tron.o odm.o predict.c blas\$(LIBS)
+	$(CXX) $(CFLAGS) -o $(TARGET)\libodm-predict.exe predict.c tron.o odm.o blas\$(LIBS)
+
+lib: odm.o tron.o blas\$(LIBS)
+	$(CXX) odm.o tron.o blas\$(LIBS) -shared -o $(TARGET)\libodm.dll
+
+tron.o: tron.cpp tron.h
+	$(CXX) $(CFLAGS) -c -o tron.o tron.cpp
+
+odm.o: odm.cpp odm.h
+	$(CXX) $(CFLAGS) -c -o odm.o odm.cpp
+
+blas\$(LIBS):
+	cd blas && $(CXX) $(CFLAGS) -c *.c && ar rcv $(LIBS) *.o *.h && ranlib $(LIBS)
+	
+clean:
+	-erase /Q *.o $(TARGET)\*.exe $(TARGET)\*.dll $(TARGET)\*.exp $(TARGET)\*.lib $(TARGET)\*.def blas\*.o blas\*.a
+
